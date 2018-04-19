@@ -41,10 +41,13 @@ func main() {
 	log.Fatal(err)
 }
 
+var cnt int
 // hello responds to the request with a plain-text "Hello, world" message.
 func hello(w http.ResponseWriter, r *http.Request) {
-	log.Printf("Serving request: %s", r.URL.Path)
+	cnt += 1
 	host, _ := os.Hostname()
+	log.Printf("Serving request: %s", r.URL.Path)
+	log.Printf("Request Count(%s): %d\n", host, cnt)
 	fmt.Fprintf(w, "Hello, world!\n")
 	fmt.Fprintf(w, "Version: 1.0.0\n")
 	fmt.Fprintf(w, "Hostname: %s\n", host)
